@@ -1,0 +1,52 @@
+<section class="weather">
+  <section class="city-info">
+    <form (ngSubmit)="findCity(getCities.controls.city)">
+      <input type="text" [formControl]="getCities.controls.city" placeholder="City name" />
+      <button>Search</button>
+      <button (click)="showAll()">Show All</button>
+    </form>
+    
+    <p *ngIf="filterError">*There is no city with that name</p>
+  
+    <table>
+      <tr>
+        <th><span (click)="sortColumn('name')">City</span></th>
+        <th><span (click)="sortColumn('temp')">Temperature</span></th>
+        <th><span (click)="sortColumn('humidity')">Humidity</span></th>
+        <th><span (click)="sortColumn('temp_min')">Min Temp</span></th>
+        <th><span (click)="sortColumn('temp_max')">Max Temp</span></th>
+        <th><span (click)="sortColumn('wind_speed')">Wind</span></th>
+        <th></th>
+      </tr>
+      <tr class="city-row" *ngFor="let city of cities[selectedPage]">
+        <td>{{ city.name }}</td>
+        <td>{{ city.temp }}&deg;</td>
+        <td>{{ city.humidity }}</td>
+        <td>{{ city.temp_min }}&deg;</td>
+        <td>{{ city.temp_max }}&deg;</td>
+        <td>{{ city.wind_speed }}mph {{ city.wind_deg }}&deg;</td>
+        <td><img [src]="'http://openweathermap.org/img/wn/' + city.icon + '.png'"></td>
+      </tr>
+    </table>
+  
+    <label for="rows">Rows:</label>
+    <select 
+      id="rows"
+      (change)="onRowChange($event.target.value)">
+      <option 
+        *ngFor="let option of rowOptions"
+        [value]="option"
+        [selected]="isSelected(option)">{{ option }}</option>
+    </select>
+  
+    <span class="previous-page" (click)="previousPage()"><< Previous</span>
+    <span class="page-number"(click)="pageSelect(i)" *ngFor="let city of cities, let i = index">{{ i + 1 }}</span>
+    <span class="next-page" (click)="nextPage()">Next >></span>
+  </section>
+
+  <section class="city-chart">
+    <app-chart [cities]="cities" [selectedPage]="selectedPage"></app-chart>
+  </section>
+  
+  
+</section>

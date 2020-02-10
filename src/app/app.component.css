@@ -1,0 +1,49 @@
+.weather {
+    max-width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+button {
+    margin-left: 0.5rem;
+}
+
+input, button {
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+    border: 1px solid orange;
+}
+
+button {
+    background-color: orangered;
+    padding: 0.3rem 1rem;
+    color: #ffffff;
+}
+
+table {
+    border: 2px solid white;
+}
+
+th {
+    padding: 0.5rem;
+    background-color: lightcyan;
+}
+
+td {
+    padding: 0.5rem 1rem;
+}
+
+tr:nth-child(odd) {
+    background-color: lightcyan;
+}
+
+.previous-page, .page-number, .next-page {
+    cursor: pointer;
+    padding: 0.3rem 0.5rem;
+}
+
+.previous-page:hover, .page-number:hover, .next-page:hover {
+    color: blue;
+    text-decoration: underline;
+}
